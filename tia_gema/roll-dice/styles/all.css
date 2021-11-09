@@ -1,0 +1,33 @@
+@import url('https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css');
+@import url('https://s3.amazonaws.com/ecornell/Codio/CSS/styles.css');
+@import url('https://ecornell.s3.amazonaws.com/Codio/Courses/CIS560s/CSS/CIS560s_Overrides.css');
+
+.die-holder {
+  width: 200px;
+  height: 200px;
+  margin: 40px auto;
+  border: 1px black solid;
+  border-radius: 6px;
+}
+
+#mainDie {
+}
+
+#mainDie.rolling {
+  opacity: 0.5;
+}
+
+.button-holder {
+  margin: 40px auto 40px auto;
+  text-align: center;
+}
+
+#rollButton {
+  background-color: #b31b1b;
+  border: #b31b1b;
+  width: 140px;
+  height: auto;
+
+  font-size: 24px;
+  font-weight: bold;
+}
