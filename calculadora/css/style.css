@@ -1,0 +1,12 @@
+h1 {
+  font-size: 60px;
+  background: #35c0f2;
+  border-radius: 10px;
+  padding: 5px;
+  color: black;
+}
+
+#tittle {
+  width: 400px;
+  height: 90px;
+}

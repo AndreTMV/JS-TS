@@ -1,8 +1,8 @@
 // Example: node ticket-maker.js -i ticket.svg --name "Kyle Harms" --admissionTime "1:30 PM" --row "A" --seat "5" -o kyle_harms.svg
 
 // Provided: Command Line Argument Flags
-const LONG_INPUT = "--input"
-const SHORT_INPUT = "-i"
+const LONG_INPUT = "--input";
+const SHORT_INPUT = "-i";
 
 const LONG_NAME = "--name";
 const SHORT_NAME = "-n";
@@ -38,24 +38,24 @@ function parseArgs() {
     if (arg == LONG_INPUT || arg == SHORT_INPUT) {
       i = i + 1;
       ticketFilename = ARGS[i];
-    } 
+    }
     // else if (arg == LONG_CSV || arg == SHORT_CSV ) {
     //   i = i + 1;
     //   csvPath = ARGS[i];
-    // } 
-    else if (arg == LONG_NAME || arg == SHORT_NAME ) {
+    // }
+    else if (arg == LONG_NAME || arg == SHORT_NAME) {
       i = i + 1;
       fullName = ARGS[i];
-    } else if (arg == LONG_ADMISSION || arg == SHORT_ADMISSION ) {
+    } else if (arg == LONG_ADMISSION || arg == SHORT_ADMISSION) {
       i = i + 1;
       admissionTime = ARGS[i];
-    } else if (arg == LONG_SEAT || arg == SHORT_SEAT ) {
+    } else if (arg == LONG_SEAT || arg == SHORT_SEAT) {
       i = i + 1;
       seat = ARGS[i];
-    } else if (arg == LONG_ROW || arg == SHORT_ROW ) {
+    } else if (arg == LONG_ROW || arg == SHORT_ROW) {
       i = i + 1;
       row = ARGS[i];
-    }else if (arg == LONG_OUTPUT || arg == SHORT_OUTPUT ) {
+    } else if (arg == LONG_OUTPUT || arg == SHORT_OUTPUT) {
       i = i + 1;
       outputFilename = ARGS[i];
     } else {
@@ -71,15 +71,15 @@ function validateArgs() {
   if (!ticketFilename) {
     console.error("missing ticket filename argument");
     process.exit(1);
-  } 
-//   else if (!csvPath) {
-//     console.error("missing csv path argument");
-//     process.exit(1);
-//   } 
+  }
+  //   else if (!csvPath) {
+  //     console.error("missing csv path argument");
+  //     process.exit(1);
+  //   }
   else if (!fullName) {
     console.error("missing full name argument");
     process.exit(1);
-  }else if (!seat) {
+  } else if (!seat) {
     console.error("missing seat argument");
     process.exit(1);
   } else if (!row) {
@@ -98,8 +98,8 @@ function validateArgs() {
 
 // Function: Create the ticket from the passed-in arguments.
 function makeTicket(ticketFile, name, admissionTime, row, seat, outputFile) {
-  const fs = require('fs')
-  let svg = fs.readFileSync(ticketFile, 'utf-8');
+  const fs = require("fs");
+  let svg = fs.readFileSync(ticketFile, "utf-8");
 
   // TODO: Replace the appropriate fields in the ticket file.
   svg = svg.replace("Full Name", name);

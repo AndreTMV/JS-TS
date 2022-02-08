@@ -1,5 +1,4 @@
 // Example: node ticket-maker.js -i "ticket.svg" -c "attendees.csv" -o "tickets"
-
 const LONG_INPUT = "--input";
 const SHORT_INPUT = "-i";
 
@@ -22,10 +21,10 @@ function parseArgs() {
     if (arg == LONG_INPUT || arg == SHORT_INPUT) {
       i = i + 1;
       ticketFilename = ARGS[i];
-    } else if (arg == LONG_CSV || arg == SHORT_CSV ) {
+    } else if (arg == LONG_CSV || arg == SHORT_CSV) {
       i = i + 1;
       csvPath = ARGS[i];
-    } else if (arg == LONG_OUTPUT || arg == SHORT_OUTPUT ) {
+    } else if (arg == LONG_OUTPUT || arg == SHORT_OUTPUT) {
       i = i + 1;
       outputFilename = ARGS[i];
     } else {
@@ -51,32 +50,50 @@ function validateArgs() {
 }
 
 // TODO 1: Implement the makeTickets() Function: Reads in a CSV and makes a ticket for each attendee.
-function makeTickets(csvFilePath, ticketFile, outputDir){
+function makeTickets(csvFilePath, ticketFile, outputDir) {
   // create the output dir if it doesn't exits
-  const fs = require('fs');
-  fs.mkdirSync(outputDir, {recursive: true});
-  const csv = require('csvtojson');
-  csv().fromFile(csvFilePath).then((jsonObj) =>{
-    jsonObj.forEach(attendee => {
-        let outputFile = outputDir + "/" + attendee['name'] + ".svg";
-        makeTicket(ticketFile, attendee['name'], attendee['admissionTime'], attendee['row'], attendee['seat'], attendee['id'],outputFile);
+  const fs = require("fs");
+  fs.mkdirSync(outputDir, { recursive: true });
+  const csv = require("csvtojson");
+  csv()
+    .fromFile(csvFilePath)
+    .then((jsonObj) => {
+      jsonObj.forEach((attendee) => {
+        let outputFile = outputDir + "/" + attendee["name"] + ".svg";
+        makeTicket(
+          ticketFile,
+          attendee["name"],
+          attendee["admissionTime"],
+          attendee["row"],
+          attendee["seat"],
+          attendee["id"],
+          outputFile
+        );
+      });
     });
-  });
 }
 
 // TODO 2: Modify the makeTicket() function to include a QR code on each ticket.
-function makeTicket(ticketFile, name, admissionTime, row, seat, id, outputFile) {
+function makeTicket(
+  ticketFile,
+  name,
+  admissionTime,
+  row,
+  seat,
+  id,
+  outputFile
+) {
   // Load Libraries
-  const fs = require('fs');
-  const QRCode = require('qrcode-svg');
+  const fs = require("fs");
+  const QRCode = require("qrcode-svg");
 
   const QR_PLACEHOLDER = '<svg id="barcode"></svg>';
-  let svg = fs.readFileSync(ticketFile, 'utf-8');
+  let svg = fs.readFileSync(ticketFile, "utf-8");
 
   // TODO 2.1: Generate the QR code & store it in a variable
   let qrCode = new QRCode({
     xmlDeclaration: false,
-    content:id
+    content: id,
   });
 
   // TODO 2.2: Call the .svg function on the generated QR code.
@@ -85,7 +102,7 @@ function makeTicket(ticketFile, name, admissionTime, row, seat, id, outputFile) 
   svg = svg.replace("XX:XX XX", admissionTime);
   svg = svg.replace("ROW", row);
   svg = svg.replace("SEAT", seat);
-  svg = svg.replace(QR_PLACEHOLDER, svgQR)
+  svg = svg.replace(QR_PLACEHOLDER, svgQR);
 
   fs.writeFileSync(outputFile, svg);
 }
@@ -147,8 +164,6 @@ makeTickets(csvPath, ticketFilename, outputFilename);
 
 // // TODO 1: Implement the makeTickets() Function: Reads in a CSV and makes a ticket for each attendee.
 
-
-
 // // TODO 2: Modify the makeTicket() function to include a QR code on each ticket.
 // function makeTicket(ticketFile, name, admissionTime, row, seat, id, outputFile) {
 //   // Load Libraries
@@ -162,7 +177,7 @@ makeTickets(csvPath, ticketFilename, outputFilename);
 //   let qrCode =
 
 //   // TODO 2.2: Call the .svg function on the generated QR code.
-//   let svgQR = 
+//   let svgQR =
 
 //   svg = svg.replace("Full Name", name);
 //   svg = svg.replace("XX:XX XX", admissionTime);
